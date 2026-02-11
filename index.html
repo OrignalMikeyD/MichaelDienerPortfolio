@@ -1026,7 +1026,7 @@ p5.js Instance Mode: https://p5js.org/reference/p5/p5/
     <!-- FOOTER -->
     <footer class="footer" id="contact">
       <h3 class="footer-title">Contact</h3>
-      <a href="/cdn-cgi/l/email-protection#d692bfb3b8b3a49b96a5bba3f8b3b2a3"><span class="__cf_email__" data-cfemail="d591bcb0bbb0a79895a6b8a0fbb0b1a0">[email&#160;protected]</span></a>
+      <a href="mailto:Dienerm@smu.edu">Dienerm@smu.edu</a>
       <div class="social-links" style="justify-content: center; margin-top: var(--space-md);">
         <a href="https://github.com/OrignalMikeyD" target="_blank">GitHub</a>
         <a href="https://www.linkedin.com/in/michaeldiener-ai/" target="_blank">LinkedIn</a>
@@ -1039,7 +1039,7 @@ p5.js Instance Mode: https://p5js.org/reference/p5/p5/
   <!-- ========================================
        THE SOUL STACK — p5.js Interactive Sketch
        ======================================== -->
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     const soulSketch = (s) => {
       class SoulNode {
         constructor(x, y, radius, col, pinned) {
@@ -1274,4 +1274,13 @@ p5.js Instance Mode: https://p5js.org/reference/p5/p5/
       s.windowResized = () => {
         let container = document.getElementById('soul-stack-container');
         canvasW = Math.min(container.offsetWidth, 700);
-      
+        canvasH = Math.min(480, canvasW * 0.68);
+        s.resizeCanvas(canvasW, canvasH);
+        stack = new SoulStack(canvasW / 2, canvasH / 2);
+      };
+    };
+
+    new p5(soulSketch);
+  </script>
+</body>
+</html>
