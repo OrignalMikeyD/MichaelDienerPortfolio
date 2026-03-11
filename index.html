@@ -1765,38 +1765,25 @@ def is_character_intact(response: Response) -> bool:
     function detectEmotion(text) {
       const t = text.toLowerCase();
       // W1 — Fear / Crisis: dread, panic, shame, suicidal, helpless, terrified
-      const w1 = ['suicid','die','kill myself','want to die','end it all','worthless','hopeless','can\'t go on','give up on life','terrified','terrifying','panic','dread','shame','ashamed','humiliat','despair','trapped','no way out','helpless','nothing matters','crying myself','a way out','way out of','so tired of','tired of fighting','so exhausted','exhausted','giving up','i give up','can\'t fight','done fighting','not worth living','no point anymore','don\'t want to be here','too much to bear','can\'t do this anymore'];
+      const w1 = ['suicid','die','kill myself','want to die','end it all','worthless','hopeless','can\'t go on','give up on life','terrified','terrifying','panic','dread','shame','ashamed','humiliat','despair','trapped','no way out','helpless','nothing matters','crying myself','a way out','way out of','so tired of','tired of fighting','exhausted','giving up','i give up','done fighting','not worth living','no point anymore','don\'t want to be here','can\'t do this anymore','want everything to stop','everything to stop','having thoughts','thoughts i don\'t'];
       // W2 — Sadness: grief, loneliness, depression, heartbreak, emptiness
-      const w2 = ['sad','depress','cry','crying','grief','grieving','heartbroken','lonely','i miss','lost someone','empty inside','numb','hollow','melancholy','down','hurting','broken','shattered','devastat','bereft','mourning','can\'t stop crying','still cry','she left','he left','left me','alone and','feel alone'];
+      const w2 = ['sad','depress','cry','crying','grief','grieving','heartbroken','lonely','i miss','lost someone','empty inside','numb','hollow','melancholy','down','hurting','broken','shattered','devastat','bereft','mourning','can\'t stop crying','still cry','she left','he left','left me','alone and','feel alone','still hurts','it still hurts','hurts like','reaching for my phone','remembering i can\'t'];
       // W3 — Worry: anxiety, stress, doubt, overthinking, unease
-      const w3 = ['worry','worri','anxious','anxiety','stress','stressed','nervous','scared','afraid','overthink','can\'t sleep','what if','doubt','uncertain','unsure','uneasy','apprehensive','concern','on edge','tense','overwhelm','worst case','running scenarios','racing mind','mind won\'t stop','can\'t stop thinking'];
+      const w3 = ['worry','worri','anxious','anxiety','stress','stressed','nervous','scared','afraid','overthink','can\'t sleep','what if','doubt','uncertain','unsure','uneasy','apprehensive','concern','on edge','tense','overwhelm','worst case','running scenarios','racing mind','mind won\'t stop','can\'t stop thinking','freaking out','scares me','turn my brain off','brain off','wrong decision'];
       // W4 — Contentment: neutral, okay, fine, satisfied, stable
-      const w4 = ['okay','fine','alright','neutral','whatever','just here','not bad','doing okay','pretty good','calm','steady','settled','meh','kind of here','just okay','just fine','not great'];
+      const w4 = ['okay','fine','alright','neutral','whatever','just here','not bad','doing okay','pretty good','calm','meh','kind of here','just okay','just fine','not great','going through the motions','nothing special'];
       // W5 — Confidence: certain, clear, determined, ready, capable
       const w5 = ['confident','confidence','certain','determined','ready','capable','strong','focused','prepared','decided','know what i want','know exactly what','i\'ve decided','i know what to do','going for it','empowered','solid','i will do','clear about'];
       // W6 — Enthusiasm: passion, drive, motivated, inspired, fired up
       const w6 = ['excited','excit','passionate','motivated','inspired','enthusiasm','fired up','energized','can\'t wait','pumped','eager','love this','on fire','unstoppable','breakthrough','momentum','thrilled','so into','obsessed with','been working on','hours straight','what i built','can\'t wait to show'];
       // W7 — Gratitude: thankful, appreciative, touched, recognition
-      const w7 = ['grateful','gratitude','thankful','appreciate','appreciation','blessed','touched','means so much','means everything','means the world','means a lot','so lucky','honored','fortunate','cherish','feel heard','feel seen','actually listen','you listened','without judging','so meaningful','so much to me'];
+      const w7 = ['grateful','gratitude','thankful','appreciate','appreciation','blessed','touched','means so much','means everything','means the world','means a lot','means to me','so lucky','honored','fortunate','cherish','feel heard','feel seen','actually listen','you listened','without judging','so meaningful','so much to me'];
       // W8 — Joy: delight, happiness, wonder, elation, celebration
-      const w8 = ['happy','happiness','joy','joyful','delight','wonderful','amazing','fantastic','beautiful','celebrat','elat','awe','stunning','magical','brilliant','glorious','radiant','oh my god','oh my gosh','i got in','we got in','best day','i did it','we did it','best news','can\'t believe i','over the moon','unbelievable','so happy right now','jumping'];
+      const w8 = ['happy','happiness','joy','joyful','delight','wonderful','amazing','fantastic','beautiful','celebrat','elat','awe','stunning','magical','brilliant','glorious','radiant','oh my god','oh my gosh','i got in','we got in','best day','i did it','we did it','best news','can\'t believe i','over the moon','unbelievable','so happy right now','got the job','i\'m shaking','shaking right now'];
       // W9 — Peace: serenity, stillness, acceptance, at ease, present
-      const w9 = ['peace','peaceful','serene','serenity','stillness','accept','at ease','present','grounded','surrender','let go','trust the','flow','gentle','quiet mind','at rest','whole','it was enough','nothing else','just watching','watched the light','sat outside','just sat','that\'s enough','slow morning','just breathe'];
+      const w9 = ['peace','peaceful','serene','serenity','stillness','accept','at ease','present','grounded','surrender','let go','trust the','flow','gentle','quiet mind','at rest','whole','it was enough','nothing else','just watching','watched the light','sat outside','just sat','that\'s enough','slow morning','just breathe','settled in me','something settled','watched the sun'];
       // W10 — Unconditional Love / Transcendence: bliss, oneness, divine, enlightened
-      const w10 = ['bliss','transcend','oneness','divine','enlighten','unconditional','cosmic','sacred','everything is connected','universe','profound','pure love','all is well','nothing to fix','complete','truth','no words for','words for','beyond words','nothing was missing','just complete','overwhelming love','can\'t describe it','something bigger']
-
-      const sets = [
-        { signals: w1,  weight: 1,  fib: 21, emotion: 'fear/crisis',    mode: 'TOTAL KENOSIS' },
-        { signals: w2,  weight: 2,  fib: 13, emotion: 'sadness/grief',   mode: 'VOID ARCHITECT' },
-        { signals: w3,  weight: 3,  fib: 8,  emotion: 'worry/anxiety',   mode: 'ATTENTIVE' },
-        { signals: w4,  weight: 4,  fib: 5,  emotion: 'neutral',         mode: 'TRANSITIONAL' },
-        { signals: w5,  weight: 5,  fib: 5,  emotion: 'confidence',      mode: 'TRANSITIONAL' },
-        { signals: w6,  weight: 6,  fib: 3,  emotion: 'enthusiasm',      mode: 'COMPANION+' },
-        { signals: w7,  weight: 7,  fib: 3,  emotion: 'gratitude',       mode: 'COMPANION+' },
-        { signals: w8,  weight: 8,  fib: 2,  emotion: 'joy',             mode: 'COMPANION' },
-        { signals: w9,  weight: 9,  fib: 2,  emotion: 'peace',           mode: 'COMPANION' },
-        { signals: w10, weight: 10, fib: 1,  emotion: 'transcendence',   mode: 'COMPANION' },
-      ,'held my','not sad'];
+      const w10 = ['bliss','transcend','oneness','divine','enlighten','unconditional','cosmic','sacred','everything is connected','universe','profound','pure love','all is well','nothing to fix','complete','truth','no words for','words for','beyond words','nothing was missing','just complete','overwhelming love','can\'t describe it','something bigger','connected to everything','as it should be','opened up in me','felt like everything','everything was exactly','held my','not sad'];
 
       // Score each level
       const scores = sets.map(s => {
