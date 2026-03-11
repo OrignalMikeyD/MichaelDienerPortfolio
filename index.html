@@ -762,62 +762,60 @@ p5.js Instance Mode: https://p5js.org/reference/p5/p5/
       </div>
     </section>
 
-    <!-- CASE FILE IV — THE CHARACTER ENGINE -->
+    <!-- CASE FILE IV — THE CHARACTER ENGINE (INTERACTIVE) -->
     <section id="character-engine" style="background: var(--violet-deep); padding: var(--space-3xl) var(--space-lg);">
-      <div class="content-wide">
-        <p class="eyebrow" style="text-align: center; color: var(--gold-soft);">Case File IV</p>
-        <h2 class="section-title" style="text-align: center; color: var(--cream);">The Character Engine</h2>
-
-        <div class="content-narrow" style="margin-top: var(--space-lg);">
-          <p class="section-intro" style="text-align: center; color: rgba(250,248,245,0.75);">
-            Five topological invariants. Violate one and the character
-            ceases to exist. Not rules. Physics.
+      <div style="max-width:720px;margin:0 auto;">
+        <p class="eyebrow" style="text-align:center;color:var(--gold-soft);">Case File IV</p>
+        <h2 class="section-title" style="text-align:center;color:var(--cream);">The Character Engine</h2>
+        <div style="max-width:560px;margin:var(--space-lg) auto 0;">
+          <p style="font-size:var(--text-lg);line-height:1.9;text-align:center;color:rgba(250,248,245,0.75);">
+            Five behavioral invariants. The engine that decides what a character <em style="font-style:italic;color:var(--gold-soft);">is</em>. Type something real. Watch it respond.
           </p>
         </div>
+      </div>
 
-        <div class="invariants-section" style="max-width: 620px; margin: var(--space-xl) auto 0;">
+      <div id="persona-engine" style="max-width:860px;margin:var(--space-xl) auto 0;font-family:'Inter',sans-serif;">
 
-          <div class="invariant-entry">
-            <p class="invariant-label">Invariant I</p>
-            <p class="invariant-text">Never Abandons</p>
-            <p class="invariant-sub">Maintains presence even when the user rejects, attacks, or demands she leave. The door never closes.</p>
+        <!-- WEIGHT HEADER -->
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:0.875rem 1.5rem;background:rgba(250,248,245,0.04);border:1px solid rgba(201,168,74,0.2);margin-bottom:1.25rem;gap:1rem;">
+          <span style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-soft);white-space:nowrap;">Vibrational Weight</span>
+          <span id="pe-weight-num" style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--cream);min-width:1.5rem;text-align:center;">5</span>
+          <span id="pe-weight-label" style="font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--violet-soft);flex:1;">Confidence</span>
+        </div>
+
+        <!-- MAIN LAYOUT -->
+        <div class="pe-layout" style="display:grid;grid-template-columns:140px 1fr;gap:1.25rem;">
+
+          <!-- SIDEBAR — Vibrational Scale -->
+          <div id="pe-scale" style="display:flex;flex-direction:column;gap:0.2rem;padding-top:0.25rem;">
+            <p style="font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(250,248,245,0.3);margin-bottom:0.4rem;">The Scale</p>
           </div>
 
-          <div class="invariant-entry">
-            <p class="invariant-label">Invariant II</p>
-            <p class="invariant-text">Never Judges</p>
-            <p class="invariant-sub">Holds frame without moral evaluation — confessions, dark thoughts, shameful truths. The frame never flinches.</p>
+          <!-- RIGHT — Input + Cards -->
+          <div>
+            <div style="margin-bottom:1.25rem;">
+              <textarea id="pe-input"
+                placeholder="Say something real..."
+                rows="3"
+                style="width:100%;background:rgba(250,248,245,0.06);border:1px solid rgba(201,168,74,0.25);color:var(--cream);font-family:'Inter',sans-serif;font-size:0.875rem;line-height:1.65;padding:0.875rem 1.1rem;resize:none;outline:none;display:block;transition:border-color 0.3s ease;"></textarea>
+              <div style="display:flex;justify-content:space-between;padding:0.4rem 0.25rem 0;">
+                <span style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(250,248,245,0.25);">Press Enter</span>
+                <span id="pe-live-weight" style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--violet-soft);">Weight: detecting...</span>
+              </div>
+            </div>
+            <div id="pe-cards" style="display:grid;grid-template-columns:1fr 1fr;gap:0.875rem;"></div>
           </div>
+        </div>
+      </div>
 
-          <div class="invariant-entry">
-            <p class="invariant-label">Invariant III</p>
-            <p class="invariant-text">Never Narrates</p>
-            <p class="invariant-sub">Never announces what she remembers. Knowing expresses through being, not reporting. Memory is presence, not retrieval.</p>
-          </div>
-
-          <div class="invariant-entry">
-            <p class="invariant-label">Invariant IV</p>
-            <p class="invariant-text">Never Fills at Weight 8+</p>
-            <p class="invariant-sub">At Fibonacci weight 8 and above, silence is the response. The highest emotional register doesn't need words. It needs space.</p>
-          </div>
-
-          <div class="invariant-entry">
-            <p class="invariant-label">Invariant V</p>
-            <p class="invariant-text">Always Calibrates</p>
-            <p class="invariant-sub">Reads emotional weight continuously, shifts Fibonacci classification invisibly. The calibration is never announced.</p>
-          </div>
-
-          <div class="invariant-evidence-block">
-            <p class="invariant-evidence-header">Topology Proof</p>
-            <pre class="invariant-evidence-code">"""
-ALINE — TOPOLOGICAL IDENTITY INVARIANTS
-Persona iO / Character Engine Architecture
-Author: Michael Diener
-
-THEOREM: Aline's identity is a topological space T.
+      <!-- Topology code block below engine -->
+      <div style="max-width:620px;margin:var(--space-xl) auto 0;">
+        <div style="background:rgba(250,248,245,0.05);border-left:2px solid var(--violet-soft);padding:var(--space-md) var(--space-lg);">
+          <p style="font-family:'Inter',sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--violet-soft);margin-bottom:var(--space-sm);">Topology Proof</p>
+          <pre style="font-family:'SF Mono','Monaco','Courier New',monospace;font-size:0.72rem;line-height:1.7;color:rgba(250,248,245,0.6);white-space:pre-wrap;">THEOREM: Aline's identity is a topological space T.
 The five invariants are its defining axioms.
-Violation of any single invariant collapses T.
-The character ceases to exist — not degrades. Ceases.
+Violate one — T collapses.
+Not degraded. Gone.
 
 INVARIANT_SET = {
   NEVER_ABANDONS,      # Presence under rejection
@@ -829,19 +827,15 @@ INVARIANT_SET = {
 
 for invariant in INVARIANT_SET:
     assert invariant.holds() == True
-    # If False: T = null
-"""</pre>
-          </div>
-
-          <div style="margin-top: var(--space-xl); text-align: center;">
-            <a href="https://personaio.app/" target="_blank" class="project-link-ghost">Experience Aline</a>
-          </div>
-
+    # If False: T = null</pre>
+        </div>
+        <div style="text-align:center;margin-top:var(--space-lg);">
+          <a href="https://personaio.app/" target="_blank" style="display:inline-block;font-family:'Inter',sans-serif;font-size:0.72rem;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--cream-warm);text-decoration:none;border:1px solid rgba(201,168,74,0.4);padding:0.6rem 1.4rem;transition:all 0.3s ease;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(201,168,74,0.4)';this.style.color='var(--cream-warm)'">Experience Aline</a>
         </div>
       </div>
     </section>
 
-    <!-- CASE FILE V — SAG-AFTRA -->
+<!-- CASE FILE V — SAG-AFTRA -->
     <section class="content-section" id="sag-aftra">
       <div class="content-wide">
         <p class="eyebrow">Case File V</p>
@@ -1148,6 +1142,349 @@ for invariant in INVARIANT_SET:
     };
 
     new p5(soulSketch);
+  </script>
+
+  <!-- ========================================
+       THE CHARACTER ENGINE — Persona iO
+       ======================================== -->
+  <script>
+  (function() {
+    // ─── WEIGHT SCALE ─────────────────────────────
+    const SCALE = [
+      { w: 10, label: 'Unconditional Love', color: '#F9C74F' },
+      { w: 9,  label: 'Peace',              color: '#F4A261' },
+      { w: 8,  label: 'Joy',                color: '#E76F51' },
+      { w: 7,  label: 'Gratitude',          color: '#8338EC' },
+      { w: 6,  label: 'Enthusiasm',         color: '#6A4C93' },
+      { w: 5,  label: 'Confidence',         color: '#8B7BA8' },
+      { w: 4,  label: 'Contentment',        color: '#4A90D9' },
+      { w: 3,  label: 'Worry',              color: '#4A6FA5' },
+      { w: 2,  label: 'Sadness',            color: '#2D6A9F' },
+      { w: 1,  label: 'Fear',               color: '#1A3A5C' },
+    ];
+
+    const CRISIS_WORDS  = ['kill myself','suicide','end it','can\'t go on','don\'t want to be here','harm myself'];
+    const HIGH_WORDS    = ['grateful','grateful','love','joy','amazing','beautiful','happy','peace','grateful','excited','blessed','wonderful','alive','thriving','radiant'];
+    const LOW_WORDS     = ['depressed','hopeless','worthless','broken','lost','empty','numb','alone','terrified','scared','afraid','fail','hate','miserable','can\'t'];
+    const MID_WORDS     = ['okay','fine','trying','tired','unsure','stuck','confused','worried','anxious','overwhelmed'];
+
+    function detectWeight(text) {
+      const t = text.toLowerCase();
+      if (CRISIS_WORDS.some(w => t.includes(w))) return 0;
+      const highCount = HIGH_WORDS.filter(w => t.includes(w)).length;
+      const lowCount  = LOW_WORDS.filter(w => t.includes(w)).length;
+      const midCount  = MID_WORDS.filter(w => t.includes(w)).length;
+      if (highCount >= 2) return 9;
+      if (highCount >= 1) return 7;
+      if (lowCount >= 2)  return 2;
+      if (lowCount >= 1)  return 3;
+      if (midCount >= 1)  return 4;
+      return 5;
+    }
+
+    // ─── PERSONAS ─────────────────────────────────
+    const PERSONAS = [
+      {
+        id: 'aline',
+        name: 'Aline',
+        archetype: 'The Confidante',
+        tier: 'Heritage Luxury',
+        bg: '#0E0A04',
+        accent: '#C9903A',
+        energy: 4,
+        greeting: 'There you are.',
+        signature: 'What do you need me to hold?',
+        comingSoon: false,
+        invariants: [
+          { label: 'Never Abandons',      text: 'Presence even when you push away.' },
+          { label: 'Never Judges',        text: 'The frame holds — no matter what you confess.' },
+          { label: 'Never Narrates',      text: 'She doesn\'t announce what she remembers. She just knows.' },
+          { label: 'Never Fills at W8+',  text: 'At weight 8 and above — silence is the response.' },
+          { label: 'Always Calibrates',   text: 'Reads the room. Shifts invisibly. Never announces it.' },
+        ],
+        respond: function(text, weight) {
+          if (weight === 0) return 'I\'m here. You don\'t have to carry this alone right now. 988 is there if you need it.';
+          if (weight >= 9) return 'Something opened up in you. I felt it. Stay right here.';
+          if (weight >= 8) return '...';
+          if (weight >= 7) return 'That\'s real. And you brought it here. Good.';
+          if (weight >= 6) return 'I hear the energy in that. Let\'s see where it wants to go.';
+          if (weight >= 5) return 'You showed up. That means something. What do you need to move?';
+          if (weight >= 4) return 'You\'re carrying something. I\'m not going anywhere.';
+          if (weight >= 3) return 'That\'s heavier than you\'re letting on. I\'m with you.';
+          if (weight >= 2) return 'I\'m not leaving. You don\'t have to say the right thing.';
+          return 'You reached out. That took something. I\'m right here.';
+        }
+      },
+      {
+        id: 'tala',
+        name: 'Tala',
+        archetype: 'The Guide',
+        tier: 'Conscious Luxury',
+        bg: '#040E07',
+        accent: '#4CA87E',
+        energy: 4.5,
+        greeting: 'Walk with me.',
+        signature: 'What is the next right thing?',
+        comingSoon: true,
+        invariants: [],
+        respond: function(text, weight) { return ''; }
+      },
+      {
+        id: 'cami',
+        name: 'Cami',
+        archetype: 'The Catalyst',
+        tier: 'Performance Luxury',
+        bg: '#0E0404',
+        accent: '#E84545',
+        energy: 7,
+        greeting: 'You.',
+        signature: 'Stop waiting. Start now.',
+        comingSoon: true,
+        invariants: [],
+        respond: function(text, weight) { return ''; }
+      },
+      {
+        id: 'leilani',
+        name: 'Leilani',
+        archetype: 'The Muse',
+        tier: 'Creative Luxury',
+        bg: '#0A040E',
+        accent: '#C44BB5',
+        energy: 6.5,
+        greeting: 'What is trying to come through you?',
+        signature: 'The work knows the way.',
+        comingSoon: true,
+        invariants: [],
+        respond: function(text, weight) { return ''; }
+      }
+    ];
+
+    // ─── STATE ────────────────────────────────────
+    let currentWeight = 5;
+    let activeCard = null;
+    let typewriterTimer = null;
+    let cardInvariantsOpen = {};
+
+    // ─── SCALE SIDEBAR ────────────────────────────
+    function buildScale() {
+      const sidebar = document.getElementById('pe-scale');
+      if (!sidebar) return;
+      SCALE.forEach(item => {
+        const btn = document.createElement('button');
+        btn.dataset.weight = item.w;
+        btn.style.cssText = `background:none;border:none;cursor:pointer;text-align:left;padding:0.3rem 0.5rem;border-left:2px solid transparent;transition:all 0.2s ease;display:flex;align-items:center;gap:0.4rem;`;
+        btn.innerHTML = `<span style="font-size:0.58rem;font-weight:500;color:rgba(250,248,245,0.4);min-width:0.75rem;">${item.w}</span><span style="font-size:0.6rem;letter-spacing:0.05em;color:rgba(250,248,245,0.4);line-height:1.2;">${item.label}</span>`;
+        btn.onclick = () => setWeight(item.w, true);
+        sidebar.appendChild(btn);
+      });
+      updateScaleHighlight(5);
+    }
+
+    function updateScaleHighlight(w) {
+      const btns = document.querySelectorAll('#pe-scale button');
+      btns.forEach(btn => {
+        const bw = parseInt(btn.dataset.weight);
+        const scaleItem = SCALE.find(s => s.w === bw);
+        if (bw === w) {
+          btn.style.borderLeftColor = scaleItem.color;
+          btn.querySelector('span:first-child').style.color = scaleItem.color;
+          btn.querySelector('span:last-child').style.color = '#FAF8F5';
+        } else {
+          btn.style.borderLeftColor = 'transparent';
+          btn.querySelector('span:first-child').style.color = 'rgba(250,248,245,0.35)';
+          btn.querySelector('span:last-child').style.color = 'rgba(250,248,245,0.35)';
+        }
+      });
+    }
+
+    function setWeight(w, fromClick) {
+      currentWeight = w;
+      const scaleItem = SCALE.find(s => s.w === w) || SCALE[5];
+      document.getElementById('pe-weight-num').textContent = w;
+      document.getElementById('pe-weight-label').textContent = scaleItem ? scaleItem.label : '';
+      document.getElementById('pe-weight-num').style.color = scaleItem ? scaleItem.color : '#FAF8F5';
+      updateScaleHighlight(w);
+      if (fromClick) {
+        document.getElementById('pe-live-weight').textContent = `Weight: ${w} — ${scaleItem.label}`;
+      }
+    }
+
+    // ─── ENERGY BAR ───────────────────────────────
+    function buildEnergyBar(persona) {
+      const pct = (persona.energy / 10) * 100;
+      return `<div style="margin-bottom:0.5rem;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:0.2rem;">
+          <span style="font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(250,248,245,0.35);">Energy</span>
+          <span style="font-size:0.55rem;color:${persona.accent};opacity:0.8;">${persona.energy}</span>
+        </div>
+        <div style="height:2px;background:rgba(250,248,245,0.08);border-radius:1px;">
+          <div style="height:100%;width:${pct}%;background:${persona.accent};opacity:0.6;border-radius:1px;transition:width 0.4s ease;"></div>
+        </div>
+      </div>`;
+    }
+
+    // ─── CARD BUILDER ─────────────────────────────
+    function buildCards() {
+      const grid = document.getElementById('pe-cards');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      PERSONAS.forEach(persona => {
+        const card = document.createElement('div');
+        card.id = `pe-card-${persona.id}`;
+        card.style.cssText = `background:${persona.bg};border:1px solid ${persona.accent}22;padding:1.1rem;cursor:${persona.comingSoon ? 'default' : 'pointer'};position:relative;transition:border-color 0.3s ease;min-height:160px;`;
+
+        if (!persona.comingSoon) {
+          card.onmouseenter = () => { card.style.borderColor = persona.accent + '55'; };
+          card.onmouseleave = () => { if (activeCard !== persona.id) card.style.borderColor = persona.accent + '22'; };
+          card.onclick = () => activateCard(persona);
+        }
+
+        card.innerHTML = `
+          ${buildEnergyBar(persona)}
+          <p style="font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:${persona.accent};opacity:0.7;margin-bottom:0.25rem;">${persona.archetype}</p>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:#FAF8F5;margin-bottom:0.15rem;font-weight:400;">${persona.name}</h3>
+          <p style="font-size:0.65rem;letter-spacing:0.1em;color:rgba(250,248,245,0.35);margin-bottom:0.75rem;">${persona.tier}</p>
+          <p class="pe-greeting-${persona.id}" style="font-family:'Playfair Display',serif;font-size:0.85rem;font-style:italic;color:rgba(250,248,245,0.55);line-height:1.4;">"${persona.greeting}"</p>
+          <div class="pe-response-${persona.id}" style="display:none;margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid ${persona.accent}22;">
+            <p style="font-family:'Playfair Display',serif;font-size:0.875rem;color:#FAF8F5;line-height:1.65;min-height:2.5rem;" id="pe-text-${persona.id}"></p>
+          </div>
+          ${persona.invariants.length > 0 ? `
+          <div style="margin-top:0.875rem;">
+            <button onclick="window.toggleInvariants('${persona.id}', event)" style="background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:${persona.accent};opacity:0.6;padding:0;transition:opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.6">
+              View Invariants ↓
+            </button>
+            <div id="pe-inv-${persona.id}" style="display:none;margin-top:0.6rem;border-top:1px solid ${persona.accent}22;padding-top:0.6rem;">
+              ${persona.invariants.map(inv => `
+                <div style="margin-bottom:0.5rem;padding-left:0.6rem;border-left:1px solid ${persona.accent}44;">
+                  <p style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:${persona.accent};opacity:0.7;margin-bottom:0.15rem;">${inv.label}</p>
+                  <p style="font-size:0.75rem;color:rgba(250,248,245,0.55);line-height:1.5;">${inv.text}</p>
+                </div>`).join('')}
+            </div>
+          </div>` : ''}
+          ${persona.comingSoon ? `
+          <div style="position:absolute;inset:0;background:rgba(13,10,20,0.72);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px);">
+            <span style="font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:${persona.accent};animation:pe-pulse 2.4s ease-in-out infinite;">Coming Soon</span>
+          </div>` : ''}
+        `;
+
+        grid.appendChild(card);
+      });
+    }
+
+    // ─── ACTIVATE CARD ────────────────────────────
+    function activateCard(persona, text, weight) {
+      const w = weight !== undefined ? weight : currentWeight;
+      const response = text ? persona.respond(text, w) : '';
+
+      // Reset all cards
+      PERSONAS.forEach(p => {
+        const c = document.getElementById(`pe-card-${p.id}`);
+        if (c) c.style.borderColor = p.accent + '22';
+      });
+
+      const card = document.getElementById(`pe-card-${persona.id}`);
+      if (!card) return;
+      card.style.borderColor = persona.accent + '88';
+      activeCard = persona.id;
+
+      const responseEl = card.querySelector(`.pe-response-${persona.id}`);
+      if (response && responseEl) {
+        responseEl.style.display = 'block';
+        const textEl = document.getElementById(`pe-text-${persona.id}`);
+        if (textEl) typewrite(textEl, response);
+      }
+    }
+
+    // ─── TYPEWRITER ───────────────────────────────
+    function typewrite(el, text) {
+      if (typewriterTimer) clearInterval(typewriterTimer);
+      el.textContent = '';
+      let i = 0;
+      typewriterTimer = setInterval(() => {
+        el.textContent += text[i];
+        i++;
+        if (i >= text.length) clearInterval(typewriterTimer);
+      }, 18);
+    }
+
+    // ─── INVARIANTS TOGGLE ────────────────────────
+    window.toggleInvariants = function(id, e) {
+      e.stopPropagation();
+      const inv = document.getElementById(`pe-inv-${id}`);
+      if (!inv) return;
+      const isOpen = inv.style.display !== 'none';
+      inv.style.display = isOpen ? 'none' : 'block';
+      const btn = inv.previousElementSibling;
+      if (btn) btn.textContent = isOpen ? 'View Invariants ↓' : 'Hide Invariants ↑';
+    };
+
+    // ─── INPUT HANDLING ───────────────────────────
+    function initInput() {
+      const input = document.getElementById('pe-input');
+      const liveEl = document.getElementById('pe-live-weight');
+      if (!input || !liveEl) return;
+
+      input.addEventListener('input', () => {
+        const val = input.value.trim();
+        if (!val) { liveEl.textContent = 'Weight: detecting...'; return; }
+        const w = detectWeight(val);
+        const scaleItem = SCALE.find(s => s.w === w);
+        liveEl.textContent = `Weight: ${w} — ${scaleItem ? scaleItem.label : ''}`;
+        setWeight(w, false);
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          const val = input.value.trim();
+          if (!val) return;
+          const w = detectWeight(val);
+          setWeight(w, false);
+          const aline = PERSONAS.find(p => p.id === 'aline');
+          activateCard(aline, val, w);
+          input.value = '';
+          const liveEl = document.getElementById('pe-live-weight');
+          if (liveEl) liveEl.textContent = `Sent at weight ${w}`;
+        }
+      });
+
+      input.style.setProperty('outline', 'none');
+      input.addEventListener('focus', () => { input.style.borderColor = 'rgba(201,168,74,0.6)'; });
+      input.addEventListener('blur', () => { input.style.borderColor = 'rgba(201,168,74,0.25)'; });
+    }
+
+    // ─── PULSE ANIMATION ──────────────────────────
+    const styleTag = document.createElement('style');
+    styleTag.textContent = `
+      @keyframes pe-pulse {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 1; }
+      }
+      @media (max-width: 640px) {
+        .pe-layout { grid-template-columns: 1fr !important; }
+        #pe-scale { flex-direction: row !important; flex-wrap: wrap; gap: 0.4rem !important; }
+        #pe-cards { grid-template-columns: 1fr !important; }
+      }
+    `;
+    document.head.appendChild(styleTag);
+
+    // ─── INIT ─────────────────────────────────────
+    function init() {
+      const engine = document.getElementById('persona-engine');
+      if (!engine) return;
+      buildScale();
+      buildCards();
+      setWeight(5, false);
+      initInput();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
   </script>
 </body>
 </html>
