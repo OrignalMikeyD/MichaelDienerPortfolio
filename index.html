@@ -1913,6 +1913,7 @@ CRITICAL VIOLATIONS TO AVOID:
     function buildScale() {
       const sidebar = document.getElementById('pe-scale');
       if (!sidebar) return;
+      sidebar.innerHTML = '';
       SCALE.forEach(item => {
         const btn = document.createElement('button');
         btn.dataset.weight = item.w;
