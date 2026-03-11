@@ -1765,17 +1765,17 @@ def is_character_intact(response: Response) -> bool:
     function detectEmotion(text) {
       const t = text.toLowerCase();
       // W1 — Fear / Crisis: dread, panic, shame, suicidal, helpless, terrified
-      const w1 = ['suicid','die','kill myself','want to die','end it all','worthless','hopeless','can't go on','give up on life','terrified','terrifying','panic','dread','shame','ashamed','humiliat','despair','trapped','no way out','helpless','nothing matters','crying myself'];
+      const w1 = ['suicid','die','kill myself','want to die','end it all','worthless','hopeless','can\'t go on','give up on life','terrified','terrifying','panic','dread','shame','ashamed','humiliat','despair','trapped','no way out','helpless','nothing matters','crying myself'];
       // W2 — Sadness: grief, loneliness, depression, heartbreak, emptiness
-      const w2 = ['sad','depress','cry','crying','grief','grieving','heartbroken','alone','lonely','miss','lost someone','empty inside','numb','hollow','melancholy','down','hurting','broken','shattered','devastat','bereft','mourning','can't stop crying'];
+      const w2 = ['sad','depress','cry','crying','grief','grieving','heartbroken','alone','lonely','miss','lost someone','empty inside','numb','hollow','melancholy','down','hurting','broken','shattered','devastat','bereft','mourning','can\'t stop crying'];
       // W3 — Worry: anxiety, stress, doubt, overthinking, unease
-      const w3 = ['worry','worri','anxious','anxiety','stress','stressed','nervous','scared','afraid','overthink','can't sleep','what if','doubt','uncertain','unsure','uneasy','dread','apprehensive','concern','freaking out','on edge','tense','overwhelm'];
+      const w3 = ['worry','worri','anxious','anxiety','stress','stressed','nervous','scared','afraid','overthink','can\'t sleep','what if','doubt','uncertain','unsure','uneasy','dread','apprehensive','concern','freaking out','on edge','tense','overwhelm'];
       // W4 — Contentment: neutral, okay, fine, satisfied, stable
       const w4 = ['okay','fine','alright','neutral','whatever','not sure','just here','not bad','doing okay','pretty good','calm','steady','settled','meh'];
       // W5 — Confidence: certain, clear, determined, ready, capable
       const w5 = ['confident','confidence','certain','clear','determined','ready','capable','strong','focused','prepared','decided','know what i want','know what to do','going to','i will','i can','empowered','solid'];
       // W6 — Enthusiasm: passion, drive, motivated, inspired, fired up
-      const w6 = ['excited','excit','passionate','motivated','inspired','enthusiasm','fired up','energized','can't wait','pumped','eager','love this','on fire','unstoppable','breakthrough','momentum','thrilled about','so into','obsessed with'];
+      const w6 = ['excited','excit','passionate','motivated','inspired','enthusiasm','fired up','energized','can\'t wait','pumped','eager','love this','on fire','unstoppable','breakthrough','momentum','thrilled about','so into','obsessed with'];
       // W7 — Gratitude: thankful, appreciative, touched, recognition
       const w7 = ['grateful','gratitude','thankful','appreciate','appreciation','blessed','touched','means so much','so lucky','recognition','acknowledge','honored','fortunate','cherish','gift','abundance','notice'];
       // W8 — Joy: delight, happiness, wonder, elation, celebration
