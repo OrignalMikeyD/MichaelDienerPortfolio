@@ -1297,7 +1297,8 @@ def is_character_intact(response: Response) -> bool:
               </div>
               <div class="pe-weight-display">
                 <span class="pe-weight-num" id="pe-weight-num">5</span>
-                <span class="pe-weight-sub">current weight</span>
+                <span class="pe-weight-sub" id="pe-weight-label">Confidence</span>
+                <span class="pe-weight-sub" id="pe-mode-label" style="display:block;font-size:0.5rem;opacity:0.5;letter-spacing:0.1em;text-transform:uppercase;margin-top:0.2rem;">TRANSITIONAL</span>
               </div>
             </aside>
 
@@ -2109,6 +2110,13 @@ CRITICAL VIOLATIONS TO AVOID:
       if (!document.getElementById('persona-engine')) return;
       buildScale();
       buildCards();
+      initInput();
+      // Wire submit button
+      const submitBtn = document.getElementById('pe-submit');
+      if (submitBtn) submitBtn.addEventListener('click', sendInput);
+      // pe-hint doubles as live weight display
+      const hint = document.getElementById('pe-hint');
+      if (hint) hint.id = 'pe-live-weight';
     }
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
