@@ -1307,10 +1307,11 @@ def is_character_intact(response: Response) -> bool:
                 <textarea
                   id="pe-input"
                   class="pe-textarea"
+                  oninput="window._alineDetect && window._alineDetect(this.value)"
                   placeholder="What&#39;s actually on your mind right now..."
                   rows="3"
                 ></textarea>
-                <button id="pe-submit" class="pe-submit-btn" type="button">Send</button>
+                <button id="pe-submit" class="pe-submit-btn" type="button" onclick="window._alineSend && window._alineSend()">Send</button>
               </div>
               <p class="pe-hint" id="pe-hint">Press Enter or click Send &middot; Weight updates as you type</p>
 
@@ -1722,10 +1723,7 @@ def is_character_intact(response: Response) -> bool:
   </script>
 
   
-  <!-- ========================================
-       THE CHARACTER ENGINE — Persona iO / MRA
-       ======================================== -->
-  <script>
+  <!-- ================
   (function() {
 
     // ─── FIBONACCI WEIGHT SCALE ──────────────────
@@ -2179,6 +2177,26 @@ CRITICAL VIOLATIONS TO AVOID:
       buildScale();
       buildCards();
       initInput();
+    }
+
+    // ─── EXPOSE TO WINDOW (fallback for HTML attribute wiring) ──────────────
+    window._alineSend = sendInput;
+    window._alineDetect = function(text) {
+      if (!text.trim()) return;
+      const detection = detectEmotion(text);
+      const w = detection.weight === 0 ? 10 : detection.weight;
+      const fib = detection.fib;
+      const scaleItem = SCALE.find(s => s.w === w) || SCALE.find(s=>s.w===4);
+      setWeightDisplay(w, fib, scaleItem.label, scaleItem.mode, false);
+      const liveEl = document.getElementById('pe-live-weight');
+      if (liveEl) liveEl.textContent = 'Sensing: ' + scaleItem.label + ' · ' + scaleItem.mode;
+    };
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+
+  })();
+  );
     }
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
