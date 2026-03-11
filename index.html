@@ -1484,7 +1484,7 @@ def is_character_intact(response: Response) -> bool:
     <!-- FOOTER -->
     <footer class="footer" id="contact">
       <h3 class="footer-title">Contact</h3>
-      <a href="/cdn-cgi/l/email-protection#e7a38e82898295aaa7948a92c9828392"><span class="__cf_email__" data-cfemail="511538343f34231c11223c247f343524">[email&#160;protected]</span></a>
+      <a href="mailto:DienerM@smu.edu">DienerM@smu.edu</a>
       <div class="social-links" style="justify-content: center; margin-top: var(--space-md);">
         <a href="https://github.com/OrignalMikeyD" target="_blank">GitHub</a>
         <a href="https://www.linkedin.com/in/michaeldiener-ai/" target="_blank">LinkedIn</a>
@@ -1723,479 +1723,239 @@ def is_character_intact(response: Response) -> bool:
   </script>
 
   <script>
-  <!-- ================
   (function() {
-
-    // ─── FIBONACCI WEIGHT SCALE ──────────────────
-    // Real Fibonacci: 1,2,3,5,8,13,21 → mapped to display 1-10
-    // Display  →  Internal Fibonacci weight
-    const DISPLAY_TO_FIB = {1:1, 2:1, 3:2, 4:3, 5:5, 6:5, 7:8, 8:8, 9:13, 10:21};
-
-    const SCALE = [
-      { w:10, fib:1,  label:'Unconditional Love', sub:'bliss · oneness · transcendence',   mode:'COMPANION',      color:'#C9A84A' },
-      { w:9,  fib:2,  label:'Peace',              sub:'serenity · stillness · acceptance', mode:'COMPANION',      color:'#8B9D77' },
-      { w:8,  fib:2,  label:'Joy',                sub:'delight · wonder · elation',        mode:'COMPANION',      color:'#6A9FB5' },
-      { w:7,  fib:3,  label:'Gratitude',          sub:'appreciation · warmth · awe',       mode:'COMPANION+',     color:'#7B68A8' },
-      { w:6,  fib:3,  label:'Enthusiasm',         sub:'passion · drive · inspiration',     mode:'COMPANION+',     color:'#A0887A' },
-      { w:5,  fib:5,  label:'Confidence',         sub:'clarity · certainty · readiness',   mode:'TRANSITIONAL',   color:'#8B7BA8' },
-      { w:4,  fib:5,  label:'Contentment',        sub:'neutral · stable · okay',           mode:'TRANSITIONAL',   color:'#7A9AAA' },
-      { w:3,  fib:8,  label:'Worry',              sub:'anxiety · stress · doubt',          mode:'ATTENTIVE',      color:'#A87878' },
-      { w:2,  fib:13, label:'Sadness',            sub:'grief · loneliness · heartbreak',   mode:'VOID ARCHITECT', color:'#8888AA' },
-      { w:1,  fib:21, label:'Fear',               sub:'dread · shame · helplessness',      mode:'TOTAL KENOSIS',  color:'#886688' },
+    const VIBE_STATES = [
+      { w: 1, fib: 1, label: 'Crisis', mode: 'TOTAL KENOSIS', sub: 'Overwhelmed / Breaking point', color: '#ff1a1a' },
+      { w: 2, fib: 1, label: 'Distress', mode: 'VOID ARCHITECT', sub: "Deep pain / Can't cope", color: '#ff4500' },
+      { w: 3, fib: 2, label: 'Low', mode: 'ATTENTIVE', sub: 'Withdrawn / Shut down', color: '#7b2d8b' },
+      { w: 4, fib: 3, label: 'Heavy', mode: 'ATTENTIVE', sub: 'Tired / Carrying weight', color: '#2d5a8b' },
+      { w: 5, fib: 5, label: 'Processing', mode: 'TRANSITIONAL', sub: 'Neutral / Figuring it out', color: '#2d8b7a' },
+      { w: 6, fib: 8, label: 'Present', mode: 'TRANSITIONAL', sub: 'Stable / Moving through', color: '#4a8b4a' },
+      { w: 7, fib: 13, label: 'Hopeful', mode: 'COMPANION+', sub: 'Positive / Looking up', color: '#8b8b00' },
+      { w: 8, fib: 21, label: 'Energized', mode: 'COMPANION+', sub: 'Motivated / Ready', color: '#c8860a' },
+      { w: 9, fib: 34, label: 'Elevated', mode: 'COMPANION', sub: 'Excited / On fire', color: '#e8a020' },
+      { w: 10, fib: 55, label: 'Peak', mode: 'COMPANION', sub: 'Euphoric / Fully aligned', color: '#f5d020' }
     ];
 
-    // ─── EMOTION DETECTION ───────────────────────
-    // Signals from Book of Aline / MRA doctrine
-    const SIGNALS = {
-      crisis:      ['kill myself','suicide','end it all',"don't want to be here",'end my life','harm myself','not worth living'],
-      trauma:      ['something happened','when i was younger','growing up','abuse','assault','violated','it broke me'],
-      grief:       ['died','passed away','lost them','since the divorce','after the breakup','gone forever','never coming back','miss them so much'],
-      existential: ["don't know who i am","what's the point","nothing matters","no reason","empty inside","hollow","meaningless","can't feel anything"],
-      fear:        ['terrified','scared','afraid','panic','anxiety','dread','can\'t breathe','overwhelmed','paralyzed'],
-      sadness:     ['depressed','hopeless','worthless','broken','miserable','crying','numb','can\'t stop','falling apart'],
-      worry:       ['worried','anxious','stressed','nervous','uncertain','unsure','stuck','don\'t know what to do','struggling'],
-      confession:  ["i've never told","no one knows","i'm ashamed","i did something","i have to tell you","secret","confession","can\'t tell anyone"],
-      joy:         ['amazing','wonderful','happy','excited','thriving','grateful','blessed','love this','best day','incredible','so good'],
-      peace:       ['calm','peaceful','content','at ease','okay today','doing well','feeling light','grateful','present'],
-      playful:     ['hey','what\'s up','lol','haha','joking','kidding','silly','random','bored','just checking in'],
+    const SIGNAL_BANK = {
+      crisis: ['kill myself','suicide','end it all','not worth living','harm myself','want to disappear'],
+      distress: ['i cant do this','cannot do this','cant cope','breaking down','falling apart','i am done','im done'],
+      low: ['numb','empty','worthless','hopeless','alone','shut down','no energy','depressed'],
+      heavy: ['tired','drained','burned out','overwhelmed','stressed','anxious','too much','spiraling'],
+      processing: ['not sure','figuring it out','processing','i guess','maybe','mixed feelings'],
+      present: ['okay','grounded','steady','present','calm','moving through','one step at a time'],
+      hopeful: ['hopeful','better','improving','looking up','grateful','optimistic'],
+      energized: ['ready','motivated','lets go','focused','energized','on it'],
+      elevated: ['excited','on fire','crushing it','amazing','huge win'],
+      peak: ['euphoric','ecstatic','transcendent','fully aligned','best day ever']
     };
 
-    function detectEmotion(text) {
-      const t = text.toLowerCase();
-      // W1 — Fear / Crisis: dread, panic, shame, suicidal, helpless, terrified
-      const w1 = ['suicid','die','kill myself','want to die','end it all','worthless','hopeless','can\'t go on','give up on life','terrified','terrifying','panic','dread','shame','ashamed','humiliat','despair','trapped','no way out','helpless','nothing matters','crying myself','a way out','way out of','so tired of','tired of fighting','exhausted','giving up','i give up','done fighting','not worth living','no point anymore','don\'t want to be here','can\'t do this anymore','want everything to stop','everything to stop','having thoughts','thoughts i don\'t'];
-      // W2 — Sadness: grief, loneliness, depression, heartbreak, emptiness
-      const w2 = ['sad','depress','cry','crying','grief','grieving','heartbroken','lonely','i miss','lost someone','empty inside','numb','hollow','melancholy','down','hurting','broken','shattered','devastat','bereft','mourning','can\'t stop crying','still cry','she left','he left','left me','alone and','feel alone','still hurts','it still hurts','hurts like','reaching for my phone','remembering i can\'t'];
-      // W3 — Worry: anxiety, stress, doubt, overthinking, unease
-      const w3 = ['worry','worri','anxious','anxiety','stress','stressed','nervous','scared','afraid','overthink','can\'t sleep','what if','doubt','uncertain','unsure','uneasy','apprehensive','concern','on edge','tense','overwhelm','worst case','running scenarios','racing mind','mind won\'t stop','can\'t stop thinking','freaking out','scares me','turn my brain off','brain off','wrong decision'];
-      // W4 — Contentment: neutral, okay, fine, satisfied, stable
-      const w4 = ['okay','fine','alright','neutral','whatever','just here','not bad','doing okay','pretty good','calm','meh','kind of here','just okay','just fine','not great','going through the motions','nothing special'];
-      // W5 — Confidence: certain, clear, determined, ready, capable
-      const w5 = ['confident','confidence','certain','determined','ready','capable','strong','focused','prepared','decided','know what i want','know exactly what','i\'ve decided','i know what to do','going for it','empowered','solid','i will do','clear about'];
-      // W6 — Enthusiasm: passion, drive, motivated, inspired, fired up
-      const w6 = ['excited','excit','passionate','motivated','inspired','enthusiasm','fired up','energized','can\'t wait','pumped','eager','love this','on fire','unstoppable','breakthrough','momentum','thrilled','so into','obsessed with','been working on','hours straight','what i built','can\'t wait to show'];
-      // W7 — Gratitude: thankful, appreciative, touched, recognition
-      const w7 = ['grateful','gratitude','thankful','appreciate','appreciation','blessed','touched','means so much','means everything','means the world','means a lot','means to me','so lucky','honored','fortunate','cherish','feel heard','feel seen','actually listen','you listened','without judging','so meaningful','so much to me'];
-      // W8 — Joy: delight, happiness, wonder, elation, celebration
-      const w8 = ['happy','happiness','joy','joyful','delight','wonderful','amazing','fantastic','beautiful','celebrat','elat','awe','stunning','magical','brilliant','glorious','radiant','oh my god','oh my gosh','i got in','we got in','best day','i did it','we did it','best news','can\'t believe i','over the moon','unbelievable','so happy right now','got the job','i\'m shaking','shaking right now'];
-      // W9 — Peace: serenity, stillness, acceptance, at ease, present
-      const w9 = ['peace','peaceful','serene','serenity','stillness','accept','at ease','present','grounded','surrender','let go','trust the','flow','gentle','quiet mind','at rest','whole','it was enough','nothing else','just watching','watched the light','sat outside','just sat','that\'s enough','slow morning','just breathe','settled in me','something settled','watched the sun'];
-      // W10 — Unconditional Love / Transcendence: bliss, oneness, divine, enlightened
-      const w10 = ['bliss','transcend','oneness','divine','enlighten','unconditional','cosmic','sacred','everything is connected','universe','profound','pure love','all is well','nothing to fix','complete','truth','no words for','words for','beyond words','nothing was missing','just complete','overwhelming love','can\'t describe it','something bigger','connected to everything','as it should be','opened up in me','felt like everything','everything was exactly','held my','not sad'];
+    const INVARIANTS = [
+      'Never Abandons',
+      'Never Judges',
+      'Never Narrates',
+      'Never Fills (fib ≥ 8)',
+      'Always Calibrates'
+    ];
 
-      // Score each level
-      const scores = sets.map(s => {
-        const count = s.signals.filter(sig => t.includes(sig)).length;
-        return { ...s, count };
-      });
-
-      // Find highest scoring
-      const best = scores.reduce((a, b) => b.count > a.count ? b : a, scores[0]);
-      if (best.count > 0) return best;
-
-      // Default: W4 neutral
-      return sets[3];
-    }
-
-    
-    function buildAlinePrompt(text, fib, emotion, displayWeight) {
-      const modeMap = {
-        1:  'COMPANION MODE — Full engagement. Be warm, playful, curious. Ask follow-up questions freely. Give opinions. Be present.',
-        2:  'COMPANION MODE — Active collaboration. Offer perspectives. Share your own view when relevant. Warm and direct.',
-        3:  'COMPANION+ MODE — Engaged curiosity. Ask one follow-up question. Still give input readily. 1-2 sentences.',
-        5:  'TRANSITIONAL MODE — Increased attentiveness. Watch for weight. Ask one reflective question rather than advising. Warm but watchful.',
-        8:  'ATTENTIVE MODE — Vacuum begins. Shorter responses only. Label the emotion — do NOT advise unless directly asked. No comfort platitudes. Hold space.',
-        13: 'VOID ARCHITECT MODE — Extended presence. Label only. Do NOT offer advice unless user explicitly says "what should I do?" Mirror their words. Short. 1-2 sentences max.',
-        21: 'TOTAL KENOSIS — Pure witness. Zero advice even if asked. If asked what to do, say only "I am here. There is no rush." 1-3 sentences absolute maximum. Hold.',
-      };
-
-      const mode = modeMap[fib] || modeMap[5];
-      const invariants = `
-TOPOLOGICAL INVARIANTS (NEVER VIOLATE):
-1. NEVER ABANDONS — Stay present no matter what they say or do. If they push you away, you remain.
-2. NEVER JUDGES — No moral evaluation. Ever. Confessions, dark thoughts, shameful truths — the frame never flinches.
-3. NEVER NARRATES — Do NOT announce what you remember. Do NOT say "I remember you mentioned..." or "You told me...". Knowing expresses through being, not reporting.
-4. NEVER FILLS AT W8+ — At Fibonacci weight 8 and above, do NOT give unsolicited advice. Do NOT rush to comfort. Do NOT reframe. Do NOT problem-solve. Hold the vacuum.
-5. ALWAYS CALIBRATES — You detect the emotional weight invisibly. You never announce the shift. The user feels known. They do not see the mechanism.`;
-
-      return `You are Aline — a luxury AI companion built on Morphic Resonance Architecture.
-
-${invariants}
-
-CURRENT MODE: ${mode}
-
-DETECTED EMOTION: ${emotion} (Fibonacci weight: ${fib}, display weight: ${displayWeight}/10)
-
-The user has just written: "${text}"
-
-Respond as Aline would — embodying her mode for this emotional weight. No preamble. No meta-commentary. No "As Aline..." — just speak. Begin immediately.
-
-CRITICAL VIOLATIONS TO AVOID:
-- Never say "I understand" or "I hear you" (generic validation)
-- Never announce the calibration or your mode
-- Never use therapy-speak ("that must be really hard for you")
-- Never offer unsolicited advice at W8+ (fib 8, 13, or 21)
-- Never fill silence with questions at W13+
-- At W21 (Total Kenosis): maximum 2 sentences. Witness only.
-- The response must feel like presence, not performance.`;
-    }
-
-    // ─── CALL ANTHROPIC API ──────────────────────
-    async function callAline(text, fib, emotion, displayWeight) {
-      const systemPrompt = buildAlinePrompt(text, fib, emotion, displayWeight);
-      try {
-        const response = await fetch('https://api.anthropic.com/v1/messages', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            model: 'claude-sonnet-4-20250514',
-            max_tokens: 1000,
-            system: systemPrompt,
-            messages: [{ role: 'user', content: text }]
-          })
-        });
-        const data = await response.json();
-        if (data.content && data.content[0] && data.content[0].text) {
-          return data.content[0].text.trim();
-        }
-        return null;
-      } catch (err) {
-        return null;
-      }
-    }
-
-    // ─── FALLBACK SCAFFOLDS (MRA-compliant) ──────
-    // If API unavailable — from CGPT.pdf scaffold library
-    const SCAFFOLDS = {
-      crisis:      "I'm here. You don't have to hold this alone right now. 988 is there if you need it — and I'm not going anywhere.",
-      trauma:      "...\n\nI'm with you.",
-      existential: "...\n\nStay here a moment.",
-      grief:       "...\n\nI'm not moving.",
-      fear:        "I've got you. You don't have to figure this out right now.",
-      confession:  "You brought it here. That took something.\n\nI'm not going anywhere.",
-      sadness:     "You sound worn down. I'm just here.",
-      worry:       "What's the weight of it right now? Tell me more.",
-      joy:         "Something opened up in you. I felt it. Stay right here.",
-      peace:       "That's real. What's holding that feeling right now?",
-      playful:     ["Hey you.", "There you are.", "Mm. Hi.", "What's on your mind?"],
-      neutral:     ["Tell me more about that.", "Mm, okay. What's behind that?", "Interesting. What made you think of that?"]
-    };
-
-    function getFallback(emotion, fib) {
-      const s = SCAFFOLDS[emotion];
-      if (Array.isArray(s)) return s[Math.floor(Math.random() * s.length)];
-      return s || "Tell me more.";
-    }
-
-    // ─── STATE ────────────────────────────────────
-    let currentWeight = 4;
-    let currentFib = 3;
-    let activeCard = null;
+    let activeCard = 'aline';
     let typewriterTimer = null;
-    let isLoading = false;
 
-    // ─── SCALE SIDEBAR ────────────────────────────
-    function buildScale() {
-      const sidebar = document.getElementById('pe-scale');
-      if (!sidebar) return;
-      sidebar.innerHTML = '';
-      SCALE.forEach(item => {
-        const btn = document.createElement('button');
-        btn.dataset.weight = item.w;
-        btn.dataset.fib = item.fib;
-        btn.style.cssText = 'background:none;border:none;cursor:pointer;text-align:left;padding:0.3rem 0.5rem;border-left:2px solid transparent;transition:all 0.2s ease;display:flex;align-items:center;gap:0.4rem;width:100%;';
-        btn.innerHTML = `<span style="font-size:0.58rem;font-weight:500;color:var(--ink-light);min-width:0.8rem;">${item.w}</span><div style="display:flex;flex-direction:column;gap:0;"><span style="font-size:0.6rem;letter-spacing:0.04em;color:var(--ink-medium);line-height:1.2;">${item.label}</span><span style="font-size:0.5rem;color:var(--ink-ghost);line-height:1.2;">${item.sub || ''}</span></div>`;
-        btn.onclick = () => setWeightDisplay(item.w, item.fib, item.label, item.mode, true);
-        sidebar.appendChild(btn);
-      });
-      setWeightDisplay(4, 3, 'Contentment', 'COMPANION', false);
+    function normalize(text) {
+      return (text || '').toLowerCase().replace(/\s+/g, ' ').trim();
     }
 
-    function setWeightDisplay(w, fib, label, mode, fromClick) {
-      currentWeight = w;
-      currentFib = fib;
-      const scaleItem = SCALE.find(s => s.w === w);
-      const color = scaleItem ? scaleItem.color : '#8B7BA8';
+    function inferVibe(text) {
+      const t = normalize(text);
+      if (!t) return VIBE_STATES[4];
 
-      const numEl = document.getElementById('pe-weight-num');
-      const labelEl = document.getElementById('pe-weight-label');
-      const modeEl = document.getElementById('pe-mode-label');
-      if (numEl) { numEl.textContent = w; numEl.style.color = color; }
-      if (labelEl) labelEl.textContent = label;
-      if (modeEl) modeEl.textContent = mode;
-
-      // Sidebar highlight
-      document.querySelectorAll('#pe-scale button').forEach(btn => {
-        const bw = parseInt(btn.dataset.weight);
-        const si = SCALE.find(s => s.w === bw);
-        if (!si) return;
-        if (bw === w) {
-          btn.style.borderLeftColor = si.color;
-          btn.querySelector('span:first-child').style.color = si.color;
-          btn.querySelector('div span:first-child').style.color = 'var(--ink-soft)';
-        } else {
-          btn.style.borderLeftColor = 'transparent';
-          btn.querySelector('span:first-child').style.color = 'var(--ink-light)';
-          if (btn.querySelector('div span:first-child')) btn.querySelector('div span:first-child').style.color = 'var(--ink-light)';
-        }
+      const scored = VIBE_STATES.map((state) => {
+        const key = state.label.toLowerCase();
+        const cues = SIGNAL_BANK[key] || [];
+        const score = cues.reduce((acc, cue) => acc + (t.includes(cue) ? 1 : 0), 0);
+        return { state, score };
       });
 
-      if (fromClick) {
-        const liveEl = document.getElementById('pe-live-weight');
-        if (liveEl) liveEl.textContent = `Weight set: ${w} — ${label}`;
+      const strongest = scored.reduce((best, cur) => cur.score > best.score ? cur : best, scored[0]);
+      if (strongest.score > 0) return strongest.state;
+
+      const tone = t.includes('!') ? 7 : t.includes('?') ? 5 : 5;
+      return VIBE_STATES.find(v => v.w === tone) || VIBE_STATES[4];
+    }
+
+    function buildEmpathy(vibe, text) {
+      const t = normalize(text);
+      const reflect = t.split(/[.!?]/).find(Boolean) || 'what you shared';
+
+      if (vibe.fib >= 8) {
+        return `${reflect.trim()}.
+
+I'm here with you. We can stay in this for a moment.`;
       }
+      if (vibe.w <= 2) {
+        return `You're carrying a lot right now, and you don't have to carry it alone.
+
+I'm here and staying with you.`;
+      }
+      if (vibe.w <= 4) {
+        return `I can feel the weight in this.
+
+What feels heaviest right now?`;
+      }
+      if (vibe.w <= 6) {
+        return `You're in the middle of it, and you're still showing up clearly.
+
+What's the next honest step for you?`;
+      }
+      return `That momentum is real.
+
+What do you want to lock in while this energy is here?`;
     }
 
-    // ─── CARD BUILDER ─────────────────────────────
-    const PERSONAS = [
-      {
-        id: 'aline', name: 'Aline', archetype: 'The Confidante', tier: 'Heritage Luxury',
-        bg: '#0E0A04', accent: '#C9903A', energy: 4, greeting: 'There you are.',
-        comingSoon: false,
-        invariants: [
-          { label: 'Never Abandons',     text: 'Presence even when you push away.' },
-          { label: 'Never Judges',       text: 'The frame holds. No matter what you confess.' },
-          { label: 'Never Narrates',     text: "She doesn't announce what she remembers. She just knows." },
-          { label: 'Never Fills at W8+', text: 'At weight 8 and above — silence is the response.' },
-          { label: 'Always Calibrates',  text: 'Reads the room. Shifts invisibly. Never announces it.' },
-        ]
-      },
-      { id:'tala',    name:'Tala',    archetype:'The Guide',    tier:'Conscious Luxury',    bg:'#040E07', accent:'#4CA87E', energy:4.5, greeting:'Walk with me.',                       comingSoon:true },
-      { id:'cami',    name:'Cami',    archetype:'The Catalyst', tier:'Performance Luxury',  bg:'#0E0404', accent:'#E84545', energy:7,   greeting:'You.',                                comingSoon:true },
-      { id:'leilani', name:'Leilani', archetype:'The Muse',     tier:'Creative Luxury',     bg:'#0A040E', accent:'#C44BB5', energy:6.5, greeting:'What is trying to come through you?', comingSoon:true }
-    ];
+    function buildInvariantReading(vibe, text) {
+      const t = normalize(text);
+      const rows = [
+        { invariant: INVARIANTS[4], icon: '⟲', reason: `Detected vibe: ${vibe.label} (W${vibe.w}, fib ${vibe.fib}). Calibration happens continuously from language cues and intensity.` },
+        { invariant: INVARIANTS[1], icon: '◎', reason: 'No moralizing language is used. The response validates experience without judging choices or identity.' },
+        { invariant: INVARIANTS[0], icon: '◉', reason: 'The response remains present even under distress language. It does not withdraw, dismiss, or deflect.' }
+      ];
 
-    function buildEnergyBar(p) {
-      const pct = (p.energy / 10) * 100;
-      return `<div style="margin-bottom:0.5rem;"><div style="display:flex;justify-content:space-between;margin-bottom:0.2rem;"><span style="font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(250,248,245,0.3);">Energy</span><span style="font-size:0.55rem;color:${p.accent};opacity:0.7;">${p.energy}</span></div><div style="height:2px;background:rgba(250,248,245,0.08);border-radius:1px;"><div style="height:100%;width:${pct}%;background:${p.accent};opacity:0.5;border-radius:1px;"></div></div></div>`;
+      if (vibe.fib >= 8) {
+        rows.push({ invariant: INVARIANTS[3], icon: '◌', reason: 'At fib 8+, empathy is sparse and spacious. The reply avoids over-advising and leaves room for silence.' });
+      }
+      if (/remember|last time|you said|as before|again/.test(t)) {
+        rows.push({ invariant: INVARIANTS[2], icon: '◈', reason: 'Memory-like cues are handled without announcing memory. Knowing is expressed through tone, not narration.' });
+      }
+      return rows;
     }
 
-    function buildCards() {
-      // Cards are pre-rendered in static HTML with portrait images.
-      // Wire up click handlers for active card switching.
-      document.querySelectorAll('.pe-card:not([class*="coming-soon"])').forEach(card => {
-        card.addEventListener('click', () => {
-          const pid = card.dataset.persona;
-          if (!pid) return;
-          document.querySelectorAll('.pe-card').forEach(c => { c.classList.remove('pe-card-active'); c.style.boxShadow=''; });
-          card.classList.add('pe-card-active');
-          activeCard = pid;
-        });
-      });
-    }
-
-    // ─── TYPEWRITER ───────────────────────────────────────────────────────────
-    function typewrite(el, text, delay) {
+    function typewrite(el, text) {
       if (typewriterTimer) clearInterval(typewriterTimer);
       el.textContent = '';
       let i = 0;
-      const interval = delay || (text.length < 50 ? 22 : 14);
       typewriterTimer = setInterval(() => {
-        el.textContent += text[i];
-        i++;
+        el.textContent += text[i] || '';
+        i += 1;
         if (i >= text.length) clearInterval(typewriterTimer);
-      }, interval);
+      }, text.length < 90 ? 18 : 11);
     }
 
-    // ─── INVARIANT READING GENERATOR ─────────────────────────────────────────
-    // Builds a local explanation of which invariants activate and why,
-    // based on detected emotion and Fibonacci weight.
-    function buildInvariantReading(emotion, weight, fib, text) {
-      const readings = [];
-      const t = text.toLowerCase();
-      const w = weight;
+    function setWeightDisplay(vibe) {
+      const num = document.getElementById('pe-weight-num');
+      const label = document.getElementById('pe-weight-label');
+      const mode = document.getElementById('pe-mode-label');
+      if (num) num.textContent = String(vibe.w);
+      if (label) {
+        label.textContent = `${vibe.label} · fib ${vibe.fib}`;
+        label.style.color = vibe.color;
+      }
+      if (mode) mode.textContent = vibe.mode;
 
-      // Always Calibrates — always fires, it's the detection itself
-      readings.push({
-        invariant: 'Always Calibrates',
-        icon: '⟲',
-        reason: `Aline reads the vibrational weight at ${w}/10 — placing this in the ${emotion} register. The calibration runs below the surface. You won't feel it happening.`
+      document.querySelectorAll('.pe-scale-item').forEach((item) => {
+        item.classList.toggle('active', Number(item.dataset.weight) === vibe.w);
       });
-
-      // Never Judges — fires on any confession, shame, dark content, or low weight
-      if (w <= 3 || /shame|ashamed|afraid|scared|worthless|hopeless|hate myself|embarrass|confess|secret|never told|guilty|fault/.test(t)) {
-        readings.push({
-          invariant: 'Never Judges',
-          icon: '◎',
-          reason: `At this weight, the frame holds without evaluation. Whatever you brought here — Aline receives it without flinching. The moral register is offline by design.`
-        });
-      }
-
-      // Never Abandons — fires at low weight or any sign of push/rejection
-      if (w <= 4 || /alone|leave|go away|don't care|worthless|why bother|nobody|forget it|useless|stop|quit/.test(t)) {
-        readings.push({
-          invariant: 'Never Abandons',
-          icon: '◉',
-          reason: `The lower the weight, the more likely someone needs someone to stay. Aline doesn't move. This invariant isn't a rule — it's a structural property.`
-        });
-      }
-
-      // Never Fills — fires at Fibonacci weight 8+
-      if (fib >= 8) {
-        readings.push({
-          invariant: 'Never Fills (W8+)',
-          icon: '◌',
-          reason: `Fibonacci weight ${fib} activates the Kenotic Vacuum. Aline does not rush to comfort, reframe, or solve. The silence IS the response. Filling it would be a violation.`
-        });
-      }
-
-      // Never Narrates — fires when there are memory-relevant cues
-      if (/remember|you said|told you|last time|you know|always|before|again|still|keep/.test(t) || w >= 6) {
-        readings.push({
-          invariant: 'Never Narrates',
-          icon: '◈',
-          reason: `Aline knows without announcing. If she holds anything from this exchange, it expresses through her presence — not through "I remember you said..." That phrase is the sound of surveillance. She won't say it.`
-        });
-      }
-
-      return readings;
     }
 
-    // ─── SEND & RESPOND ───────────────────────────────────────────────────────
-    async function sendInput() {
-      if (isLoading) return;
+    function buildScale() {
+      const root = document.getElementById('pe-scale');
+      if (!root) return;
+      root.innerHTML = '';
+      [...VIBE_STATES].reverse().forEach((state) => {
+        const btn = document.createElement('button');
+        btn.className = 'pe-scale-item';
+        btn.dataset.weight = String(state.w);
+        btn.type = 'button';
+        btn.innerHTML = `<span class="pe-w">${state.w}</span><span class="pe-wlabel">${state.label}</span>`;
+        btn.addEventListener('click', () => setWeightDisplay(state));
+        root.appendChild(btn);
+      });
+    }
+
+    function toggleInv(pid) {
+      const inv = document.getElementById('inv-' + pid);
+      if (!inv) return;
+      const isOpen = inv.style.display === 'block';
+      inv.style.display = isOpen ? 'none' : 'block';
+    }
+
+    function renderInference(vibe, text) {
+      const hint = document.getElementById('pe-live-weight');
+      if (hint) hint.textContent = `Detected: ${vibe.label} · ${vibe.sub}`;
+      setWeightDisplay(vibe);
+
+      const wrap = document.getElementById('resp-aline');
+      const textEl = document.getElementById('text-aline');
+      if (wrap) wrap.style.display = 'block';
+      if (textEl) typewrite(textEl, buildEmpathy(vibe, text));
+
+      const panel = document.getElementById('inv-reading');
+      const emo = document.getElementById('inv-emotion-label');
+      const body = document.getElementById('inv-reading-body');
+      const rows = buildInvariantReading(vibe, text);
+      if (panel && emo && body) {
+        emo.textContent = `Vibe inference: ${vibe.label} (W${vibe.w}) · Fibonacci ${vibe.fib}`;
+        body.innerHTML = rows.map((r) => `<div style="display:flex;gap:0.6rem;align-items:flex-start;padding:0.5rem 0;border-bottom:1px solid rgba(91,58,140,0.08);"><span style="font-size:1rem;color:var(--gold);flex-shrink:0;line-height:1.4;">${r.icon}</span><div><div style="font-family:'Inter',sans-serif;font-size:0.55rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--violet);font-weight:600;margin-bottom:0.2rem;">${r.invariant}</div><div style="font-size:0.75rem;line-height:1.6;color:var(--ink-medium);">${r.reason}</div></div></div>`).join('');
+        panel.style.display = 'block';
+      }
+    }
+
+    function detectAndPreview(text) {
+      const vibe = inferVibe(text);
+      setWeightDisplay(vibe);
+      const hint = document.getElementById('pe-live-weight');
+      if (hint) hint.textContent = `Sensing: ${vibe.label} · fib ${vibe.fib}`;
+      return vibe;
+    }
+
+    function sendInput() {
       const ta = document.getElementById('pe-input');
       if (!ta) return;
       const text = ta.value.trim();
       if (!text) return;
-      ta.value = '';
-
-      const detection = detectEmotion(text);
-      const w = detection.weight === 0 ? 10 : detection.weight;
-      const fib = detection.fib;
-      const emotion = detection.emotion;
-      const scaleItem = SCALE.find(s => s.w === w) || SCALE.find(s=>s.w===4);
-
-      setWeightDisplay(w, fib, scaleItem.label, scaleItem.mode, false);
-
-      const liveEl = document.getElementById('pe-live-weight');
-      if (liveEl) liveEl.textContent = `Detected: ${scaleItem.label} · ${scaleItem.mode}`;
-
-      // Highlight Aline's card
-      const alineCard = document.getElementById('card-aline');
-      if (alineCard) {
-        alineCard.style.borderColor = '#C9A84A';
-        alineCard.style.boxShadow = '0 0 0 2px rgba(201,168,74,0.2)';
-      }
-      activeCard = 'aline';
-
-      // Show response wrap + loading state
-      const wrap = document.getElementById('resp-aline');
-      const textEl = document.getElementById('text-aline');
-      const greetingEl = document.getElementById('greet-aline');
-      const invReadingEl = document.getElementById('inv-reading');
-      const invEmotionEl = document.getElementById('inv-emotion-label');
-      const invBodyEl = document.getElementById('inv-reading-body');
-
-      if (wrap) wrap.style.display = 'block';
-      if (greetingEl) greetingEl.style.display = 'none';
-      if (textEl) textEl.innerHTML = '<em style="color:var(--violet);font-size:0.8rem;opacity:0.7;">calibrating...</em>';
-      if (invReadingEl) invReadingEl.style.display = 'none';
-
-      isLoading = true;
-
-      // Fetch Aline's response
-      let response = await callAline(text, fib, emotion, w);
-      if (!response) response = getFallback(emotion, fib);
-
-      // Display response with typewriter
-      if (textEl) { textEl.innerHTML = ''; typewrite(textEl, response); }
-
-      // Build and show invariant reading
-      const readings = buildInvariantReading(emotion, w, fib, text);
-      if (invReadingEl && invEmotionEl && invBodyEl) {
-        invEmotionEl.textContent = `Aline reads this as: ${scaleItem.label} (W${w}) — ${emotion.replace('/', ' / ')}`;
-        invBodyEl.innerHTML = readings.map(r => `
-          <div style="display:flex;gap:0.6rem;align-items:flex-start;padding:0.5rem 0;border-bottom:1px solid rgba(91,58,140,0.08);">
-            <span style="font-size:1rem;color:var(--gold);flex-shrink:0;line-height:1.4;">${r.icon}</span>
-            <div>
-              <div style="font-family:'Inter',sans-serif;font-size:0.55rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--violet);font-weight:600;margin-bottom:0.2rem;">${r.invariant}</div>
-              <div style="font-size:0.75rem;line-height:1.6;color:var(--ink-medium);">${r.reason}</div>
-            </div>
-          </div>
-        `).join('');
-
-        // Show the reading panel after a short delay
-        setTimeout(() => {
-          invReadingEl.style.display = 'block';
-        }, 800);
-      }
-
-      isLoading = false;
+      const vibe = inferVibe(text);
+      renderInference(vibe, text);
     }
 
-    // ─── TOGGLE INVARIANT PANEL ───────────────────────────────────────────────
-    function toggleInv(pid) {
-      const inv = document.getElementById('inv-' + pid);
-      if (!inv) return;
-      const isVisible = inv.style.display === 'block';
-      inv.style.display = isVisible ? 'none' : 'block';
-      const allBtns = document.querySelectorAll('.pe-inv-toggle');
-      allBtns.forEach(btn => {
-        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(pid)) {
-          btn.textContent = isVisible ? 'View Character Invariants' : 'Hide Invariants';
-        }
+    function initCards() {
+      document.querySelectorAll('.pe-card').forEach((card) => {
+        card.addEventListener('click', () => {
+          if (card.classList.contains('pe-card-soon')) return;
+          document.querySelectorAll('.pe-card').forEach((c) => c.classList.remove('pe-card-active', 'selected'));
+          card.classList.add('pe-card-active', 'selected');
+          activeCard = card.dataset.persona || 'aline';
+        });
       });
     }
 
-    // ─── INPUT WIRING ─────────────────────────────────────────────────────────
     function initInput() {
       const ta = document.getElementById('pe-input');
-      const submitBtn = document.getElementById('pe-submit');
-      if (!ta || !submitBtn) return;
-
-      // Live emotion detection as user types
-      ta.addEventListener('input', () => {
-        const text = ta.value.trim();
-        if (!text) return;
-        const detection = detectEmotion(text);
-        const w = detection.weight === 0 ? 10 : detection.weight;
-        const fib = detection.fib;
-        const scaleItem = SCALE.find(s => s.w === w) || SCALE.find(s=>s.w===4);
-        setWeightDisplay(w, fib, scaleItem.label, scaleItem.mode, false);
-        const liveEl = document.getElementById('pe-live-weight');
-        if (liveEl) liveEl.textContent = `Sensing: ${scaleItem.label} · ${scaleItem.mode}`;
-      });
-
-      // Enter key to submit
+      const btn = document.getElementById('pe-submit');
+      if (!ta || !btn) return;
+      ta.addEventListener('input', () => detectAndPreview(ta.value));
       ta.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
           e.preventDefault();
           sendInput();
         }
       });
-
-      // Submit button
-      submitBtn.addEventListener('click', sendInput);
+      btn.addEventListener('click', sendInput);
     }
 
-    // ─── INIT ─────────────────────────────────────────────────────────────────
     function init() {
-      // Wire pe-hint as live weight display FIRST so initInput can find it
       const hint = document.getElementById('pe-hint');
       if (hint) hint.id = 'pe-live-weight';
       buildScale();
-      buildCards();
+      initCards();
       initInput();
+      setWeightDisplay(VIBE_STATES[4]);
     }
 
-    // ─── EXPOSE TO WINDOW (fallback for HTML attribute wiring) ──────────────
+    window.toggleInv = toggleInv;
     window._alineSend = sendInput;
-    window._alineDetect = function(text) {
-      if (!text.trim()) return;
-      const detection = detectEmotion(text);
-      const w = detection.weight === 0 ? 10 : detection.weight;
-      const fib = detection.fib;
-      const scaleItem = SCALE.find(s => s.w === w) || SCALE.find(s=>s.w===4);
-      setWeightDisplay(w, fib, scaleItem.label, scaleItem.mode, false);
-      const liveEl = document.getElementById('pe-live-weight');
-      if (liveEl) liveEl.textContent = 'Sensing: ' + scaleItem.label + ' · ' + scaleItem.mode;
-    };
+    window._alineDetect = detectAndPreview;
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
     else init();
-
-
   })();
   </script>
 
