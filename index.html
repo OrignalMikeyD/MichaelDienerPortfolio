@@ -689,7 +689,7 @@
       font-size: 0.55rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: rgba(250,248,245,0.35);
+      color: var(--ink-medium);
     }
 
     /* Main Area */
@@ -719,7 +719,7 @@
       transition: border-color 0.3s;
     }
 
-    .pe-textarea::placeholder { color: rgba(250,248,245,0.25); }
+    .pe-textarea::placeholder { color: var(--ink-ghost); }
     .pe-textarea:focus { border-color: var(--gold); }
 
     .pe-submit-btn {
@@ -815,15 +815,31 @@
 
     .pe-card-name {
       font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      color: var(--cream);
+      font-size: 1.1rem;
+      color: var(--ink);
       font-weight: 400;
       line-height: 1.1;
     }
 
+    .pe-coming-soon {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      background: rgba(91,58,140,0.72);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      backdrop-filter: blur(1px);
+    }
+
     .pe-card-role {
       font-size: 0.7rem;
-      color: rgba(250,248,245,0.4);
+      color: var(--ink-light);
       margin-bottom: 0.6rem;
       letter-spacing: 0.05em;
     }
@@ -844,7 +860,7 @@
     .pe-response-area {
       font-size: 0.8rem;
       line-height: 1.6;
-      color: rgba(250,248,245,0.75);
+      color: var(--ink-medium);
       min-height: 0;
       overflow: hidden;
       max-height: 0;
@@ -908,7 +924,29 @@
       z-index: 2;
     }
 
-  </style>
+  
+    .pe-inv-toggle {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--violet);
+      opacity: 0.6;
+      margin-top: 0.75rem;
+      display: inline-block;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .pe-inv-toggle:hover {
+      opacity: 1;
+      border-bottom-color: var(--violet);
+    }
+</style>
 </head>
 <body>
   <div class="texture-grain"></div>
@@ -1255,78 +1293,7 @@ def is_character_intact(response: Response) -> bool:
             <!-- SIDEBAR: Vibrational Scale -->
             <aside class="pe-sidebar">
               <p class="pe-sidebar-title">Vibrational Scale</p>
-              <div class="pe-scale" id="pe-scale">
-                <div class="pe-scale-item" data-w="10">
-                  <span class="pe-w">10</span>
-                  <div style="display:flex;flex-direction:column;gap:0;min-width:0;">
-                    <span class="pe-wlabel">Unconditional Love</span>
-                    <span style="font-size:0.5rem;color:var(--ink-ghost);line-height:1.3;">bliss · oneness</span>
-                  </div>
-                </div>
-                <div class="pe-scale-item" data-w="9">
-                  <span class="pe-w">9</span>
-                  <div style="display:flex;flex-direction:column;gap:0;min-width:0;">
-                    <span class="pe-wlabel">Peace</span>
-                    <span style="font-size:0.5rem;color:var(--ink-ghost);line-height:1.3;">serenity · stillness</span>
-                  </div>
-                </div>
-                <div class="pe-scale-item" data-w="8">
-                  <span class="pe-w">8</span>
-                  <div style="display:flex;flex-direction:column;gap:0;min-width:0;">
-                    <span class="pe-wlabel">Joy</span>
-                    <span style="font-size:0.5rem;color:var(--ink-ghost);line-height:1.3;">delight · wonder</span>
-                  </div>
-                </div>
-                <div class="pe-scale-item" data-w="7">
-                  <span class="pe-w">7</span>
-                  <div style="display:flex;flex-direction:column;gap:0;min-width:0;">
-                    <span class="pe-wlabel">Gratitude</span>
-                    <span style="font-size:0.5rem;color:var(--ink-ghost);line-height:1.3;">warmth · awe</span>
-                  </div>
-                </div>
-                <div class="pe-scale-item" data-w="6">
-                  <span class="pe-w">6</span>
-                  <div style="display:flex;flex-direction:column;gap:0;min-width:0;">
-                    <span class="pe-wlabel">Enthusiasm</span>
-                    <span style="font-size:0.5rem;color:var(--ink-ghost);line-height:1.3;">passion · drive</span>
-                  </div>
-                </div>
-                <div class="pe-scale-item" data-w="5" id="pe-scale-active">
-                  <span class="pe-w">5</span>
-                  <div style="display:flex;flex-direction:column;gap:0;min-width:0;">
-                    <span class="pe-wlabel">Confidence</span>
-                    <span style="font-size:0.5rem;color:var(--ink-ghost);line-height:1.3;">clarity · readiness</span>
-                  </div>
-                </div>
-                <div class="pe-scale-item" data-w="4">
-                  <span class="pe-w">4</span>
-                  <div style="display:flex;flex-direction:column;gap:0;min-width:0;">
-                    <span class="pe-wlabel">Contentment</span>
-                    <span style="font-size:0.5rem;color:var(--ink-ghost);line-height:1.3;">neutral · stable</span>
-                  </div>
-                </div>
-                <div class="pe-scale-item" data-w="3">
-                  <span class="pe-w">3</span>
-                  <div style="display:flex;flex-direction:column;gap:0;min-width:0;">
-                    <span class="pe-wlabel">Worry</span>
-                    <span style="font-size:0.5rem;color:var(--ink-ghost);line-height:1.3;">anxiety · stress</span>
-                  </div>
-                </div>
-                <div class="pe-scale-item" data-w="2">
-                  <span class="pe-w">2</span>
-                  <div style="display:flex;flex-direction:column;gap:0;min-width:0;">
-                    <span class="pe-wlabel">Sadness</span>
-                    <span style="font-size:0.5rem;color:var(--ink-ghost);line-height:1.3;">grief · loneliness</span>
-                  </div>
-                </div>
-                <div class="pe-scale-item" data-w="1">
-                  <span class="pe-w">1</span>
-                  <div style="display:flex;flex-direction:column;gap:0;min-width:0;">
-                    <span class="pe-wlabel">Fear</span>
-                    <span style="font-size:0.5rem;color:var(--ink-ghost);line-height:1.3;">dread · shame</span>
-                  </div>
-                </div>
-              </div>
+              <div class="pe-scale" id="pe-scale"></div>
               <div class="pe-weight-display">
                 <span class="pe-weight-num" id="pe-weight-num">5</span>
                 <span class="pe-weight-sub" id="pe-weight-label" style="color:var(--ink-medium)">Confidence</span>
@@ -1343,7 +1310,7 @@ def is_character_intact(response: Response) -> bool:
                   placeholder="What&#39;s actually on your mind right now..."
                   rows="3"
                 ></textarea>
-                <button id="pe-submit" class="pe-submit-btn">Send</button>
+                <button id="pe-submit" class="pe-submit-btn" type="button">Send</button>
               </div>
               <p class="pe-hint" id="pe-hint">Press Enter or click Send &middot; Weight updates as you type</p>
 
@@ -1364,7 +1331,7 @@ def is_character_intact(response: Response) -> bool:
                       <p class="pe-greeting" id="greet-leilani"></p>
                       <div class="pe-response" id="text-leilani"></div>
                     </div>
-                    <button class="pe-inv-toggle" onclick="toggleInv('leilani')">View Character Invariants</button>
+                    <button class="pe-inv-toggle" type="button" onclick="toggleInv('leilani')">View Character Invariants</button>
                   </div>
                 </div>
                 <!-- ALINE -->
@@ -1395,7 +1362,7 @@ def is_character_intact(response: Response) -> bool:
                         <div class="pe-inv-item">Never Fills (W8+)</div>
                         <div class="pe-inv-item">Always Calibrates</div>
                   </div>
-                    <button class="pe-inv-toggle" onclick="toggleInv('aline')">View Character Invariants</button>
+                    <button class="pe-inv-toggle" type="button" onclick="toggleInv('aline')">View Character Invariants</button>
                   </div>
                 </div>
                 <!-- CAMI -->
@@ -1413,7 +1380,7 @@ def is_character_intact(response: Response) -> bool:
                       <p class="pe-greeting" id="greet-cami"></p>
                       <div class="pe-response" id="text-cami"></div>
                     </div>
-                    <button class="pe-inv-toggle" onclick="toggleInv('cami')">View Character Invariants</button>
+                    <button class="pe-inv-toggle" type="button" onclick="toggleInv('cami')">View Character Invariants</button>
                   </div>
                 </div>
                 <!-- TALA -->
@@ -1431,7 +1398,7 @@ def is_character_intact(response: Response) -> bool:
                       <p class="pe-greeting" id="greet-tala"></p>
                       <div class="pe-response" id="text-tala"></div>
                     </div>
-                    <button class="pe-inv-toggle" onclick="toggleInv('tala')">View Character Invariants</button>
+                    <button class="pe-inv-toggle" type="button" onclick="toggleInv('tala')">View Character Invariants</button>
                   </div>
                 </div>
 
@@ -1951,7 +1918,7 @@ CRITICAL VIOLATIONS TO AVOID:
         btn.dataset.weight = item.w;
         btn.dataset.fib = item.fib;
         btn.style.cssText = 'background:none;border:none;cursor:pointer;text-align:left;padding:0.3rem 0.5rem;border-left:2px solid transparent;transition:all 0.2s ease;display:flex;align-items:center;gap:0.4rem;width:100%;';
-        btn.innerHTML = `<span style="font-size:0.58rem;font-weight:500;color:rgba(250,248,245,0.4);min-width:0.8rem;">${item.w}</span><span style="font-size:0.6rem;letter-spacing:0.04em;color:rgba(250,248,245,0.4);line-height:1.2;">${item.label}</span>`;
+        btn.innerHTML = `<span style="font-size:0.58rem;font-weight:500;color:var(--ink-light);min-width:0.8rem;">${item.w}</span><div style="display:flex;flex-direction:column;gap:0;"><span style="font-size:0.6rem;letter-spacing:0.04em;color:var(--ink-medium);line-height:1.2;">${item.label}</span><span style="font-size:0.5rem;color:var(--ink-ghost);line-height:1.2;">${item.sub || ''}</span></div>`;
         btn.onclick = () => setWeightDisplay(item.w, item.fib, item.label, item.mode, true);
         sidebar.appendChild(btn);
       });
@@ -1979,11 +1946,11 @@ CRITICAL VIOLATIONS TO AVOID:
         if (bw === w) {
           btn.style.borderLeftColor = si.color;
           btn.querySelector('span:first-child').style.color = si.color;
-          btn.querySelector('span:last-child').style.color = '#FAF8F5';
+          btn.querySelector('div span:first-child').style.color = 'var(--ink-soft)';
         } else {
           btn.style.borderLeftColor = 'transparent';
-          btn.querySelector('span:first-child').style.color = 'rgba(250,248,245,0.35)';
-          btn.querySelector('span:last-child').style.color = 'rgba(250,248,245,0.35)';
+          btn.querySelector('span:first-child').style.color = 'var(--ink-light)';
+          if (btn.querySelector('div span:first-child')) btn.querySelector('div span:first-child').style.color = 'var(--ink-light)';
         }
       });
 
@@ -2111,7 +2078,7 @@ CRITICAL VIOLATIONS TO AVOID:
       const w = detection.weight === 0 ? 10 : detection.weight;
       const fib = detection.fib;
       const emotion = detection.emotion;
-      const scaleItem = SCALE.find(s => s.w === w) || SCALE[3];
+      const scaleItem = SCALE.find(s => s.w === w) || SCALE.find(s=>s.w===4);
 
       setWeightDisplay(w, fib, scaleItem.label, scaleItem.mode, false);
 
@@ -2198,7 +2165,7 @@ CRITICAL VIOLATIONS TO AVOID:
         const detection = detectEmotion(text);
         const w = detection.weight === 0 ? 10 : detection.weight;
         const fib = detection.fib;
-        const scaleItem = SCALE.find(s => s.w === w) || SCALE[3];
+        const scaleItem = SCALE.find(s => s.w === w) || SCALE.find(s=>s.w===4);
         setWeightDisplay(w, fib, scaleItem.label, scaleItem.mode, false);
         const liveEl = document.getElementById('pe-live-weight');
         if (liveEl) liveEl.textContent = `Sensing: ${scaleItem.label} · ${scaleItem.mode}`;
@@ -2218,12 +2185,12 @@ CRITICAL VIOLATIONS TO AVOID:
 
     // ─── INIT ─────────────────────────────────────────────────────────────────
     function init() {
+      // Wire pe-hint as live weight display FIRST so initInput can find it
+      const hint = document.getElementById('pe-hint');
+      if (hint) hint.id = 'pe-live-weight';
       buildScale();
       buildCards();
       initInput();
-      // Wire pe-hint as live display
-      const hint = document.getElementById('pe-hint');
-      if (hint) hint.id = 'pe-live-weight';
     }
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
@@ -2233,4 +2200,5 @@ CRITICAL VIOLATIONS TO AVOID:
   </script>
 
   </body>
+
 </html>
